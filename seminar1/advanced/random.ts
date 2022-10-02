@@ -41,7 +41,7 @@ const dinner: Dinner = {
     const ob = members.find((member) => member.group == "ob");
     const yb = members.find((member) => member.group == "yb");
 
-    console.log(`오늘 서버파트 저녁 모임은 ${ob?.name},${yb?.name} 입니다!`);
+    console.log(`오늘 서버파트 저녁 모임은 ${ob!.name},${yb!.name} 입니다!`);
   },
 };
 
