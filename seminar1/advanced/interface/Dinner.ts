@@ -3,6 +3,7 @@ import Members from "./Members";
 
 export default interface Dinner {
   members: Members[];
+  menu: string[];
   shuffle(members: Members[]): Members[];
-  organize(members: Members[]): void;
+  organize(members: Members[], menu: string[]): void;
 }
