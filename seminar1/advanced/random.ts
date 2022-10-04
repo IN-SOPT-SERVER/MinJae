@@ -1,4 +1,5 @@
 import Dinner from "./interface/Dinner";
+import _ from "lodash";
 
 const dinner: Dinner = {
   members: [
@@ -32,16 +33,16 @@ const dinner: Dinner = {
     },
   ],
   menu: ["스시", "피자", "치킨", "햄버거", "파스타"],
-  shuffle(members) {
-    members.sort(() => Math.random() - 0.5);
-    return members;
-  },
+  // shuffle(members) {
+  //   members.sort(() => Math.random() - 0.5);
+  //   return members;
+  // },
   organize(members, menu) {
-    this.shuffle(members);
+    const randomMembers = _.shuffle(members);
     const randomNumber = Math.floor(Math.random() * menu.length);
 
-    const ob = members.find((member) => member.group == "ob");
-    const yb = members.find((member) => member.group == "yb");
+    const ob = randomMembers.find((member) => member.group == "ob");
+    const yb = randomMembers.find((member) => member.group == "yb");
 
     console.log(
       `오늘 서버파트 저녁 모임은 ${ob?.name},${yb?.name}이 ${menu[randomNumber]}집에서 봅니다!`
