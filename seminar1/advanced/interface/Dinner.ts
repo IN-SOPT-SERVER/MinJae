@@ -4,6 +4,5 @@ import Members from "./Members";
 export default interface Dinner {
   members: Members[];
   menu: string[];
-  //shuffle(members: Members[]): Members[];
-  organize(members: Members[], menu: string[]): void;
+  organize({ members, menu }: Dinner): void;
 }

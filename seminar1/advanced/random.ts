@@ -37,7 +37,7 @@ const dinner: Dinner = {
   //   members.sort(() => Math.random() - 0.5);
   //   return members;
   // },
-  organize(members, menu) {
+  organize({ members, menu }: Dinner) {
     const randomMembers = _.shuffle(members);
     const randomNumber = Math.floor(Math.random() * menu.length);
 
@@ -50,4 +50,4 @@ const dinner: Dinner = {
   },
 };
 
-dinner.organize(dinner.members, dinner.menu);
+dinner.organize(dinner);
