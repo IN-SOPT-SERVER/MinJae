@@ -9,7 +9,7 @@ const updateUser = async (req: Request, res: Response) => {
   if (!name) {
     return res
       .status(400)
-      .json({ status: 400, message: "유저 정보를 찾지 못함" });
+      .json({ status: 400, message: "유저 정보 업데이트 실패" });
   }
   const updatedUser = await userService.updateUser(+userId, name);
   return res
