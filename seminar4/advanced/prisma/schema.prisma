@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  userName    String
+  age         Int?
+  email       String?       @db.VarChar(400)
+  LikeContent LikeContent[]
+}
+
+model Content {
+  id          Int           @id(map: "content_pkey") @default(autoincrement())
+  contentName String?       @db.VarChar(100)
+  genre       String?       @db.VarChar(100)
+  ageLimit    Int?
+  LikeContent LikeContent[]
+}
+
+model LikeContent {
+  id        Int      @id(map: "FavoriteContent_pkey") @default(autoincrement())
+  userId    Int?
+  contentId Int?
+  Content   Content? @relation(fields: [contentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "favoritecontent_content_id_fk")
+  User      User?    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "favoritecontent_user_id_fk")
+}
