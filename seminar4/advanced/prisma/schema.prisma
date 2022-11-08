@@ -27,6 +27,6 @@ model LikeContent {
   id        Int      @id(map: "FavoriteContent_pkey") @default(autoincrement())
   userId    Int?
   contentId Int?
-  Content   Content? @relation(fields: [contentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "favoritecontent_content_id_fk")
-  User      User?    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "favoritecontent_user_id_fk")
+  Content   Content? @relation(fields: [contentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "likecontent_content_id_fk")
+  User      User?    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "likecontent_user_id_fk")
 }
