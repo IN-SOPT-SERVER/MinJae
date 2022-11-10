@@ -1,6 +1,26 @@
 import { Request, Response } from "express";
 import { contentService } from "../service";
 
+//* 콘텐츠 정보 조회
+const getContent = async (req: Request, res: Response) => {
+  const { contentId } = req.params;
+  const { episode } = req.query;
+
+  if (!contentId) {
+    return res
+      .status(400)
+      .json({ status: 400, message: "유저를 찾을 수 없음" });
+  }
+
+  const data = await contentService.getContent(
+    +contentId,
+    +(episode as string)
+  );
+  return res
+    .status(200)
+    .json({ status: 200, message: "찜한 콘텐츠 조회 성공", data });
+};
+
 //* 찜한 콘텐츠 생성
 const createLikeContent = async (req: Request, res: Response) => {
   const { userId } = req.params;
@@ -45,6 +65,7 @@ const deleteLikeContents = async (req: Request, res: Response) => {
 };
 
 const contentController = {
+  getContent,
   createLikeContent,
   getLikeContents,
   deleteLikeContents,

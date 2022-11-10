@@ -20,13 +20,23 @@ model Content {
   contentName String?       @db.VarChar(100)
   genre       String?       @db.VarChar(100)
   ageLimit    Int?
-  LikeContent LikeContent[]
+  episode     Episode[]
+  likeContent LikeContent[]
 }
 
 model LikeContent {
   id        Int      @id(map: "FavoriteContent_pkey") @default(autoincrement())
   userId    Int?
   contentId Int?
-  Content   Content? @relation(fields: [contentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "likecontent_content_id_fk")
-  User      User?    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "likecontent_user_id_fk")
+  content   Content? @relation(fields: [contentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "likecontent_content_id_fk")
+  user      User?    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "likecontent_user_id_fk")
+}
+
+model Episode {
+  id            Int      @id @default(autoincrement())
+  contentId     Int?
+  episodeNumber Int?
+  runningTime   Int?
+  description   String?  @db.VarChar(500)
+  content       Content? @relation(fields: [contentId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "episode_content_id_fk")
 }
