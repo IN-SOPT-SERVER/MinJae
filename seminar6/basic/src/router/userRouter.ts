@@ -15,6 +15,7 @@ router.post(
     body("email").notEmpty(),
     body("password").isLength({ min: 6 }),
   ],
+  auth,
   userController.createUser
 );
 
@@ -34,9 +35,9 @@ router.post(
 router.get("/", userController.getAllUser);
 
 //* 유저 정보 업데이트 - PATCH api/user/:userId
-router.patch("/:userId", userController.updateUser);
+router.patch("/:userId", auth, userController.updateUser);
 
 //* 유저 삭제 - DELETE api/user/:userId
-router.delete("/:userId", userController.deleteUser);
+router.delete("/:userId", auth, userController.deleteUser);
 
 export default router;
