@@ -11,7 +11,7 @@ const createContent = async (contentCreateDto: ContentCreateDto) => {
       contentName: contentCreateDto.contentName,
       genre: contentCreateDto.genre,
       ageLimit: contentCreateDto.ageLimit,
-      image: contentCreateDto.image,
+      image: contentCreateDto.imageList,
     },
   });
   return data;

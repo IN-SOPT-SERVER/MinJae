@@ -7,14 +7,16 @@ import { contentService } from "../service";
 
 //* 콘텐츠 생성
 const createContent = async (req: Request, res: Response) => {
-  const image: Express.MulterS3.File = req.file as Express.MulterS3.File;
-  const { location } = image;
+  const images: Express.MulterS3.File[] = req.files as Express.MulterS3.File[];
+  const imageList = images.map((image: Express.MulterS3.File) => {
+    return image.location;
+  })
 
   const contentCreateDto: ContentCreateDto = {
       contentName: req.body.contentName,
       genre: req.body.genre,
-      ageLimit: req.body.ageLimit,
-      image: location,
+      ageLimit: +(req.body.ageLimit),
+      imageList: imageList,
   }
   
   if (!contentCreateDto) {

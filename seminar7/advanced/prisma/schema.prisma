@@ -21,7 +21,7 @@ model Content {
   contentName String?       @db.VarChar(100)
   genre       String?       @db.VarChar(100)
   ageLimit    Int?
-  image       String?       @db.VarChar(800)
+  image       String[]      @db.VarChar(800)
   episode     Episode[]
   likeContent LikeContent[]
 

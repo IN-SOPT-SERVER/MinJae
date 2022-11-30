@@ -8,7 +8,7 @@ const router: Router = Router();
 router.get('/search', contentController.searchContentByName);
 
 //* 콘텐츠 생성 POST api/content
-router.post("/", upload.single("file"), contentController.createContent);
+router.post("/", upload.array("file"), contentController.createContent);
 //* 콘텐츠 내용 조회  GET api/content/:contentId
 router.get("/:contentId", contentController.getContent);
 //* 콘텐츠 내용 전체 조회 GET api/content
